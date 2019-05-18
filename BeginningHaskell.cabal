@@ -18,7 +18,7 @@ build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
 library
-  -- exposed-modules: Chapter2.SimpleFunctions
+  -- exposed-modules: Chapter2.SimpleFunctions, Chapter2.DataTypes
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.12 && <4.13

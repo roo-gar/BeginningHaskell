@@ -4,7 +4,9 @@ B. Basic Data Types
 C. if-then-else (SimpleFunctions.hs)
 D. Local bindings (SimpleFunctions.hs)
 E. Function definitions and type signatures (SimpleFunctions.hs)
-F. 
+F. ADTs (DataTypes.hs)
+G. Pattern Matching (DataTypes.hs)
+H. Default value
 
 --- A ---
 The type of an expression e can be obained by entering :type e or by entering :t e
@@ -56,6 +58,10 @@ IV. [τ] a.k.a. lists
 			(++) :: [a] -> [a] -> [a]
 			> [1,2] ++ [3,3]
 			> [1,2,3,3]
+		f) get the nth element of the list
+			(!!) :: [a] -> Int -> a
+			> [1, 2, 3, 4, 5] !! 2
+			> 3
 
 V. Bool
 	• True or False values
@@ -91,4 +97,22 @@ VI. (a, b), (a, b, c), ... a.k.a. tuple
 	* See SimpleFunctions.hs
 
 --- F ---
+	ADTs (Algebraic Data Types): is the most basic kind of data types you can create in Haskell.
+	A ADT is defined by two pieces of data:
+	1. a name for the type
+	2. a set of constructors
+		• inside a module all constructors must have different names
+		• data types and constructor names live in different worlds, so it is possible to create a constructor with the same names as a data type
 
+	Default deriving allows adding some functionality to an ADT without writing code.
+	• To get a string representation of values you need to derive Show
+
+--- G ---
+	• patterns are checked in the same order they appear in the code
+	• constants are also patterns
+
+--- H ---
+	In some cases, a default value can be returned when we don’t get an applicable value.
+	This problem is so common in practice that the Haskell Platform already bundles a special data type for this matter: Maybe τ.
+	As lists and tuples, the Maybe type is parameterized by the type of value it holds, so you have Maybe Integer, Maybe String, Maybe [Integer] and so on.
+	There are only two kinds of values that this type can have: Nothing, with no arguments, usually signaling that the function doesn’t have nothing sensible to return forthat specific value, and Just v, that holds a single value v of the corresponding type.
