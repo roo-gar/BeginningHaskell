@@ -1,0 +1,26 @@
+Table of contents:
+A. Create project from command line
+B. Add a new module to an existing project
+C. Compile the project
+D. Load a module in ghci
+
+--- A ---
+To create a new project from cmd enter
+>>> cabal init
+
+--- B ---
+To add a new module to your project follow the next steps:
+1. Choose a name for the module (e.g. A.B.C where A & B are directories and C is the name of the module)
+2. Create a file with name C and .hs extension
+3. Name your module at the beginning of the file with the following declaration:
+	module A.B.C where
+4. Tell cabal to include it in your project by inserting the name of the module in the .cabal file expanded-modules or other-modules stanzas. (other-modules is used for internal modules)
+
+--- C ---
+To compile the project run the two following commands
+>>> cabal configure
+>>> cabal build
+
+--- D ---
+To load a module in the ghci enter
+>>> :l src/A/B/C.hs

@@ -1,0 +1,94 @@
+Table of contents:
+A. Type notation
+B. Basic Data Types
+C. if-then-else (SimpleFunctions.hs)
+D. Local bindings (SimpleFunctions.hs)
+E. Function definitions and type signatures (SimpleFunctions.hs)
+F. 
+
+--- A ---
+The type of an expression e can be obained by entering :type e or by entering :t e
+• v :: T means that v is a value in the type T (e.g. False :: Bool)
+• e :: T means that the expression e will produce a value of type T (e.g. not True :: Bool)
+
+--- B ---
+Basic Data Types
+
+I. Char
+	• Can be written in three different ways: 'a', \97', or '\x61'
+	• Extra functionality is provided by Data.Char module
+
+II. Num
+	Can be one of the following types:
+	1. Int: bounded integer type with range -2^63 to 2^63 - 1
+	2. Integer: the unbounded integer type which can support any decimal value
+	3. Fractional: 
+		Can be one of the following types: 
+		3.1. Float: single precission floating-point number
+		3.2. Double: double precission floating-point number
+		3.3. Ratio: rational number (e.g. 1 % 2) 
+			* Data.Ratio module must be imported
+
+III. [Char] a.k.a. string
+	• Written between double quotes (e.g. "Hello")
+
+IV. [τ] a.k.a. lists
+	• Lists are homogeneus
+	• Lists are linked lists
+	• Basic list operations:
+		a) cons: append an element to the end of the list
+			(:) :: a -> [a] -> [a] 
+			> 1 : 2 : 3 : []
+			> [1,2,3]
+		b) null: check wehter the list is empty
+			null :: Foldable t => t a -> Bool
+			> null []
+			> True
+		c) head: get the first element of the list
+			head :: [a] -> a
+			> head [1, 2]
+			> 1
+		d) tail: get the list without the first element
+			tail :: [a] -> [a]
+			> tail [1,2,3]
+			> [2,3]
+		e) concat: concatenate one list with another
+			(++) :: [a] -> [a] -> [a]
+			> [1,2] ++ [3,3]
+			> [1,2,3,3]
+
+V. Bool
+	• True or False values
+	• Support long-circuiting (& and |) and short-circuiting (&&, || and not)
+
+VI. (a, b), (a, b, c), ... a.k.a. tuple
+	• Tuples can be heterogeneus	 
+	• A pair is a tuple with two elements that supports the following operations
+		a) fst: get the first element of the pair
+			fst :: (a, b) -> a
+			> fst (1, 2)
+			> 1
+		b) snd: get the second element of the pair
+			snd :: (a, b) -> b
+			> snd (1, 2)
+			> 2
+
+--- C ---
+	if <b> then <t> else <f> expression must fulffill the next requirements
+	• t and f must be expression themselves
+    • both then and else branches must be present along with the if
+    • the entire expression must have a defined type
+    (e.g. if 3 < 4.5 then "3 is less than 4.5" else "3 is not less than 4.5")
+
+--- D ---
+	There are two kinds of bindings:
+	1. let: introduces the binding before the main expression
+		• let <name> = <expression> in <main expression...>
+	2. where: introduces the binding after the main expression
+		• <main expression...> where <name> = <expression> 
+
+--- E ---
+	* See SimpleFunctions.hs
+
+--- F ---
+
