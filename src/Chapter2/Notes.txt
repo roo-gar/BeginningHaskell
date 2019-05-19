@@ -8,7 +8,8 @@ F. ADTs (DataTypes.hs)
 G. Pattern Matching (DataTypes.hs & SimpleFunctions.hs)
 H. Default value (SimpleFunctions.hs)
 I. Guards (DataTypes.hs & SimpleFunctions.hs)
-F. View Patterns (DataTypes.hs)
+J. View Patterns (DataTypes.hs)
+J. Records (DataTypes.hs)
 
 --- A ---
 The type of an expression e can be obained by entering :type e or by entering :t e
@@ -125,9 +126,19 @@ VI. (a, b), (a, b, c), ... a.k.a. tuple
 --- I ---
 	A guard is part of the pattern matching syntax that allows you to refine a pattern using Boolean conditions that must be fulfilled by the bound values after a successful match.
 
---- F ---
+--- J ---
 	Sometimes you want to look for patterns in a value, but in some way they are not directly encoded.
 	So you need to preprocess the value before matching.
 	For those cases, we can use view patterns.
 	These patterns extend all of those previously seen with a new syntax element, (function -> pattern), which applies function to the value and then matches the result with the pattern.
 	• To enable view patterns you neeed to add the following pragma at the beginning of the source: {-# LANGUAGE ViewPatterns #-}
+
+--- K ---
+	• records make accessing or updating part of a structure much easier than otherwise
+	• records are defined using data declarations, but instead of just using a type for each parameter, we write parameterName :: parameterType
+	• you can create values from these types using the same constructor syntax that ADTs or you can also use the constructor name followed by a list of each field name (e.g. IndividualR { person = PersonR { lastName = "Smith", firstName = "John" } })
+	• Haskell enforces two extra restrictions on field names:
+		1. They must not clash with any other field or function name.
+    	2. You are allowed to use the same field name in more than one of the alternatives of your data type.
+    	However, if you do so, all those fields must have the same type.
+    	If such is not the case, no correct type can be given to the corresponding function.
