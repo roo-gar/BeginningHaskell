@@ -1,3 +1,4 @@
+{-# LANGUAGE ViewPatterns #-}
 module DataTypes where
 
 data Gender = Male | Female | Unknown
@@ -55,9 +56,9 @@ countGenders listClients = if null listClients
                                     _                 -> count
                                 where count = countGenders (tail listClients)
 
-fibonacci 0 = 0
-fibonacci 1 = 1
-fibonacci n = fibonacci (n-1) + fibonacci (n-2)
+specialClient :: Client -> Bool
+specialClient ( clientName -> "Mr. Alejandro") = True
+specialClient _                                = False
 
 --                             Manufacturer Model Name CanTravelToPast CanTravelToFuture Price
 data TimeMachine = TimeMachine Manufacturer Int String Bool Bool Float 

@@ -28,3 +28,28 @@ maxmin lst = let h = head lst
                      where t = maxmin (tail lst)
                            t_max = fst t
                            t_min = snd t
+
+sorted :: [Integer] -> Bool
+sorted []            = True
+sorted [_]           = True
+sorted (x : r@(y:_)) = x < y && sorted r
+
+ifibonacci :: Integer -> Maybe Integer
+ifibonacci n | n < 0     = Nothing
+ifibonacci 0             = Just 0
+ifibonacci 1             = Just 1
+ifibonacci n | otherwise = let (Just f1, Just f2) = (ifibonacci (n-1), ifibonacci (n-2))
+                           in Just (f1 + f2)
+
+ackerman :: Integer -> Integer -> Integer
+ackerman 0 n                     = n + 1
+ackerman m 0 | m > 0             = ackerman (m - 1) 1
+ackerman m n | m > 0 && n > 0    = ackerman (m - 1) (ackerman m (n - 1))
+
+myunzip :: [(a, a)] -> ([a], [a])
+myunzip []    = ([], [])
+myunzip (x:xs) = let (a, b) = x
+               in (a : first, b : second)
+               where unzipped = (myunzip xs)
+                     first = (fst unzipped)
+                     second = (snd unzipped)

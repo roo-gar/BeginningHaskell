@@ -5,8 +5,10 @@ C. if-then-else (SimpleFunctions.hs)
 D. Local bindings (SimpleFunctions.hs)
 E. Function definitions and type signatures (SimpleFunctions.hs)
 F. ADTs (DataTypes.hs)
-G. Pattern Matching (DataTypes.hs)
-H. Default value
+G. Pattern Matching (DataTypes.hs & SimpleFunctions.hs)
+H. Default value (SimpleFunctions.hs)
+I. Guards (DataTypes.hs & SimpleFunctions.hs)
+F. View Patterns (DataTypes.hs)
 
 --- A ---
 The type of an expression e can be obained by entering :type e or by entering :t e
@@ -110,9 +112,22 @@ VI. (a, b), (a, b, c), ... a.k.a. tuple
 --- G ---
 	• patterns are checked in the same order they appear in the code
 	• constants are also patterns
+	• it’s customary in Haskell to write pattern matching on lists using a letter or a small word followed by the same identifier in plural, like x:xs.
+	• as patterns - allows you to bind some value in the match, while at the same time allowing you to match on inner components of that value; to use it, you have to wrap into parentheses the whole pattern you want to give a name to, and prepend it by the variable that will be used to refer to the whole pattern and the @ symbol
+	• matching on tuples is also easy: just use the syntax of a comma-separated list of components between parentheses
 
 --- H ---
 	In some cases, a default value can be returned when we don’t get an applicable value.
 	This problem is so common in practice that the Haskell Platform already bundles a special data type for this matter: Maybe τ.
 	As lists and tuples, the Maybe type is parameterized by the type of value it holds, so you have Maybe Integer, Maybe String, Maybe [Integer] and so on.
 	There are only two kinds of values that this type can have: Nothing, with no arguments, usually signaling that the function doesn’t have nothing sensible to return forthat specific value, and Just v, that holds a single value v of the corresponding type.
+
+--- I ---
+	A guard is part of the pattern matching syntax that allows you to refine a pattern using Boolean conditions that must be fulfilled by the bound values after a successful match.
+
+--- F ---
+	Sometimes you want to look for patterns in a value, but in some way they are not directly encoded.
+	So you need to preprocess the value before matching.
+	For those cases, we can use view patterns.
+	These patterns extend all of those previously seen with a new syntax element, (function -> pattern), which applies function to the value and then matches the result with the pattern.
+	• To enable view patterns you neeed to add the following pragma at the beginning of the source: {-# LANGUAGE ViewPatterns #-}
