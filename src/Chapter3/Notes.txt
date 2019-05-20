@@ -1,0 +1,18 @@
+Table of contents:
+A. Parametric Polymorphism (ParametricPolymorphism.hs)
+B. High-order functions
+C. Anonymous functions
+
+--- A ---
+	• a polymorphic type is written with its name along with a list of all its type parameters
+
+--- B ---
+	• ($) :: (a -> b) -> a -> b
+	• ($) apply a function to its arguments
+	• Haskell gives a very low precedence to ($); therefore, we can omit a lot of parenthesis when using ($)
+	• e.g. maximum (map succ [1, 2, 3]) is equal to maximum $ map succ [1, 2, 3]
+
+--- C --- 
+	Anonymous functions are function bodies that are not given a name and that can be written anywhere in the code where a function is expected. 
+	The function body syntax is: \param1 param2 ... -> body
+	(e.g. map ( \x -> x + 2 ) [1,2,3])

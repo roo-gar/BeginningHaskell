@@ -12,9 +12,9 @@ J. View Patterns (DataTypes.hs)
 J. Records (DataTypes.hs)
 
 --- A ---
-The type of an expression e can be obained by entering :type e or by entering :t e
-• v :: T means that v is a value in the type T (e.g. False :: Bool)
-• e :: T means that the expression e will produce a value of type T (e.g. not True :: Bool)
+	The type of an expression e can be obained by entering :type e or by entering :t e
+	• v :: T means that v is a value in the type T (e.g. False :: Bool)
+	• e :: T means that the expression e will produce a value of type T (e.g. not True :: Bool)
 
 --- B ---
 Basic Data Types
