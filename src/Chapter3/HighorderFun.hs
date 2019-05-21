@@ -32,3 +32,27 @@ isGovOrg client = case client of
 
 filterGovOrgs :: [Client i] -> [Client i] 
 filterGovOrgs clients = filter isGovOrg clients
+
+duplicateOdds :: [Integer] -> [Integer]
+duplicateOdds = map (*2) . filter odd
+
+
+--Functions that take a sequence of arguments are called the curried versions of those that take a tuple
+myuncurry :: (a -> b -> c) -> (a,b) -> c
+myuncurry f = \(x,y) -> f x y
+ 
+mycurry :: ((a,b) -> c) -> a -> b -> c
+mycurry f = \x y -> f (x,y)
+
+--(***) performs the parallel composition of two functions (that is, each of them is applied to a component of a tuple)
+(***) :: (a -> b) -> (c -> d) -> ((a,c) -> (b,d))
+f *** g = \(x,y) -> (f x, g y)
+
+duplicate :: a -> (a,a)
+duplicate x = (x,x)
+
+-- rewrite the formula 3x + 7(x + 2) using point-free style
+formula1 :: Integer -> Integer
+formula1 = uncurry (+) . ( ((*7) . (+2)) *** (*3) ) . duplicate
+
+-- flip :: (a -> b -> c) -> (b -> a -> c)

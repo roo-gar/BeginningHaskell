@@ -1,7 +1,9 @@
 Table of contents:
 A. Parametric Polymorphism (ParametricPolymorphism.hs)
-B. High-order functions
-C. Anonymous functions
+B. High-order functions (HighorderFun.hs)
+C. Anonymous functions (HighorderFun.hs)
+D. Point-free style (HighorderFun.hs)
+E. Modules
 
 --- A ---
 	• a polymorphic type is written with its name along with a list of all its type parameters
@@ -16,3 +18,23 @@ C. Anonymous functions
 	Anonymous functions are function bodies that are not given a name and that can be written anywhere in the code where a function is expected. 
 	The function body syntax is: \param1 param2 ... -> body
 	(e.g. map ( \x -> x + 2 ) [1,2,3])
+	• a section is just a specification of the operation to be done, enclosed in parenthesis, and where the parameters for the anonymous function are completely wiped out. (e.g. map (/2) [1,2,3])
+	• if a keyword appears in the end of both parameters lists (e.g. double list = map (\x -> x * 2) list) it can be omitted double = map (\x -> x * 2)
+
+--- D ---
+	Partial application encourages a programming style where functions are combined without ever mentioning their parameters which is called point-free style
+	• the most important of these combinators is the period (.), which composes two functions (f . g = \x -> f (g x))
+	• combinators are functions that create a point-free style by combining other functions (e.g. curry and uncurry)
+
+--- E ---
+	• module imports are listed after the module declaration, but before any other definition
+	• you can specify that you wish to import only some functions (e.g. import Data.List ( permutations, subsequence ))
+	• you can specify that you wish to import everything except functions (e.g. import Data.List hiding ( head, tail ))
+	• to import or hide a data type extra syntax is required
+	(e.g.	import Chapter3.ParamPoly ( Client() )                    	-- only type, no constructors
+			import Chapter3.ParamPoly ( Client(GovOrg,Individual) )     -- a subset of constructors
+			import Chapter3.ParamPoly ( Client(..) )   					-- .. is used for importing all constructors)
+	• a qualified import requires you to prefix a function with the name of the module it came from (e.g. import qualified Data.List (permutations, subsequence))
+	• you can rename the module using as (e.g. import qualified Data.List as L)
+	• you can control which declarations you want to export (e.g. module M (f) where ... will only export function f)
+
