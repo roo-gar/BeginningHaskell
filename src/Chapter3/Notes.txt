@@ -4,6 +4,7 @@ B. High-order functions (HighorderFun.hs)
 C. Anonymous functions (HighorderFun.hs)
 D. Point-free style (HighorderFun.hs)
 E. Modules
+F. Folds (Lists.hs)
 
 --- A ---
 	• a polymorphic type is written with its name along with a list of all its type parameters
@@ -38,3 +39,5 @@ E. Modules
 	• you can rename the module using as (e.g. import qualified Data.List as L)
 	• you can control which declarations you want to export (e.g. module M (f) where ... will only export function f)
 
+--- F ---
+	A fold over a data structure such as a list is a function that aggregates or combines all the values contained in that structure to produce a single result.
