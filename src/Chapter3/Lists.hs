@@ -1,5 +1,7 @@
 module Chapter3.Lists where
 
+import Data.List
+
 myfoldr :: (a -> b -> b) -> b -> [a] -> b
 myfoldr f initial []     = initial
 myfoldr f initial (x:xs) = f x (foldr f initial xs)
@@ -40,3 +42,8 @@ myallf = foldr (&&) True
 
 minimumBy :: Ord b => (a -> b) -> [a] -> a
 minimumBy g lst@(x:xs) = foldr (\x y -> if (g x) < (g y) then x else y) x lst
+
+myelem :: Integer -> [Integer] -> Bool
+myelem x lst = case find (== x) lst of
+                 Just v -> True
+                 Nothing -> False

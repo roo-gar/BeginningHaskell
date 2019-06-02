@@ -5,6 +5,7 @@ C. Anonymous functions (HighorderFun.hs)
 D. Point-free style (HighorderFun.hs)
 E. Modules
 F. Folds (Lists.hs)
+G. More list functions
 
 --- A ---
 	• a polymorphic type is written with its name along with a list of all its type parameters
@@ -41,3 +42,22 @@ F. Folds (Lists.hs)
 
 --- F ---
 	A fold over a data structure such as a list is a function that aggregates or combines all the values contained in that structure to produce a single result.
+
+--- G ---
+	• filter :: (a -> Bool) -> [a] -> [a]
+	• nubBy :: (a -> a -> Bool) -> [a] -> [a] *takes out elements such that no two elements in the returned list are equivalent
+	• partition :: (a -> Bool) -> [a] -> ([a], [a])
+	• find :: Foldable t => (a -> Bool) -> t a -> Maybe a
+	• dropWhile :: (a -> Bool) -> [a] -> [a]
+	• takeWhile :: (a -> Bool) -> [a] -> [a]
+	• span :: (a -> Bool) -> [a] -> ([a], [a]) *returns both the taken and the dropped list
+	• any :: Foldable t => (a -> Bool) -> t a -> Bool
+	• all :: Foldable t => (a -> Bool) -> t a -> Bool
+	• unionBy :: (a -> a -> Bool) -> [a] -> [a] -> [a]
+	• intersectBy :: (a -> a -> Bool) -> [a] -> [a] -> [a]
+	• insert :: Ord a => a -> [a] -> [a]
+	• (\\) :: Eq a => [a] -> [a] -> [a] *set difference
+	• elem :: (Foldable t, Eq a) => a -> t a -> Bool *contains
+	• compare :: Ord a => a -> a -> Ordering
+	• flip :: (a -> b -> c) -> b -> a -> c
+	• on :: (b -> b -> c) -> (a -> b) -> a -> a -> c *import Data.Function
