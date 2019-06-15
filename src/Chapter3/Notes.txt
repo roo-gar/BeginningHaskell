@@ -6,6 +6,8 @@ D. Point-free style (HighorderFun.hs)
 E. Modules
 F. Folds (Lists.hs)
 G. More list functions
+H. List comprehensions
+I. Unfolds
 
 --- A ---
 	• a polymorphic type is written with its name along with a list of all its type parameters
@@ -61,3 +63,19 @@ G. More list functions
 	• compare :: Ord a => a -> a -> Ordering
 	• flip :: (a -> b -> c) -> b -> a -> c
 	• on :: (b -> b -> c) -> (a -> b) -> a -> a -> c *import Data.Function
+
+--- H ---
+ 	List comprehensions have two parts, separated by | and wrapped by square brackets.
+ 	The first part is the expression, which defines a transformation to apply to all the elements that will be returned.
+ 	The second part is made of a list of qualifiers, and specifies from whence the elements will come, and the constraints upon them.
+ 	• generators accept pattern matching (e.g. [ clientName x | x@(GovOrg _ _) <- listOfClients ])
+ 	• a list comprehension may have multiple generators (e.g. [(x,y,x*y) | x <- [1 .. 4], y <- [1 .. 10]])
+ 	• a generator may also depend on other values in the comprehension (e.g. [ toUpper c | s <- ["This","is","a","list"], c <- ' ':s ])
+ 	• local bindings are allowed (e.g. [ sqrt v | (x,y) <- [(1,2),(3,8)], let v = x*x+y*y ])
+ 	• list comprehensions allow filtering out some elements using a guard (e.g. [(x,y) | x <- [1 .. 6], y <- [1 .. 6], x <= y])
+ 	
+ --- I ---
+ 	The algorithm for unfolding is the following: start with a seed of type b.
+ 	Apply the function given as first argument.
+ 	You can get two kinds of output: Nothing signals that unfoldr should stop producing elements, whereas Just (x, s) attaches x to the new list and continues the process with a new seed s.
+ 	• unfoldr :: (b -> Maybe (a, b)) -> b -> [a] *Available in Data.List
