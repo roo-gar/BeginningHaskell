@@ -1,0 +1,24 @@
+Table of contents:
+A. Packages
+B. Containers 
+
+--- A ---
+	• a package is the unit of distribution of code understood by the Cabal tool
+	• the Hackage package database lives at http://hackage.haskell.org
+	• your local Cabal installation maintains a list of all the available packages in the remote Hackage repository, but this mirror of the package list is not updated automatically. To update you need to enter the command: $ cabal update
+	• to install a package from Hackage you just enter the command $ cabal install package-name 
+	• the most common way of getting a package is not by manually downloading it, but rather adding it as a dependency of another package which is achieved by adding it at the property build-depends of the corresponding stanza in your .cabal file (e.g. build-depends:   base >= 4, containers)
+	• by default Cabal installs packages on a current user basis. That means that when you are developing, all the packages that you are creating or that are installed as a dependency are stored in the same location and shared between all other projects.
+	This may lead to conflicting sets of dependencies.
+	• sandboxes isolate each package and are created by entering the command $ cabal sandbox init at the root of the project
+	• to delete all the files in a sandbox, if you want to build your package from a clean state, you must execute $ cabal sandbox delete
+
+
+--- B ---
+	• a container is a data type whose main purpose is to hold any number of elements of homogeneous type
+	• containers package should be added as a dependency
+	• to use Map import it always as a qualified name to avoid conflicts (import qualified Data.Map.Strict as Map)
+	• Map documentation can be found in https://hackage.haskell.org/package/containers-0.6.2.1/docs/Data-Map-Strict.html
+	• to use Sets import (import qualified Data.Set as S)
+
+	
