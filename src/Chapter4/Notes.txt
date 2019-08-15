@@ -20,5 +20,10 @@ B. Containers
 	• to use Map import it always as a qualified name to avoid conflicts (import qualified Data.Map.Strict as Map)
 	• Map documentation can be found in https://hackage.haskell.org/package/containers-0.6.2.1/docs/Data-Map-Strict.html
 	• to use Sets import (import qualified Data.Set as S)
+	• trees are composed of nodes, which hold a value and may have other trees as children. In the Data.Tree module, those children are represented as a bare list of trees, sometimes called a forest
+	• pre-order traversal can be achieved using the flatten function defined in the Data.Tree module
+	• the breadth-first traversal is available via the levels function, where also each level is returned as a list
+	• the implementation in Data.Graph, nodes are always identified by an integer, edges are directed (an edge from a to b does not imply an edge from b to a) and without weights
+
 
 	
